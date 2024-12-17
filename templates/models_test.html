@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eris AI Translator</title>
+    <title>Model Test</title>
     <link rel="stylesheet" href="static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,14 @@
         </select>
         <br><br>
 
+        <select name="models">
+            <option value="Español" {% if language == 'Español' %}selected{% endif %}>Model1</option>
+            <option value="Japanese" {% if language == 'Japanese' %}selected{% endif %}>Model2</option>
+            <option value="German" {% if language == 'German' %}selected{% endif %}>Model3</option>
+            <option value="English" {% if language == 'English' %}selected{% endif %}>Model4</option>
+        </select>
+        <br><br>
+
         <!-- Campo de texto para inserir o prompt -->
         <input type="text" id="texto_input" name="texto_input" value="{{ request.form['texto_input'] if request.form.get('texto_input') else '' }}">
         <br><br>
@@ -35,7 +43,5 @@
         <p>{{ texto }}</p>
     {% endif %}
     </div>
-
-    <a href="/models_test.html">Model Test</a>
 </body>
 </html>
