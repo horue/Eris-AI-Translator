@@ -13,10 +13,10 @@ def use_ai(language, prompt):
         messages=[
             {
                 "role": "user",
-                "content": f"Translate for me the sentence to {language}: {prompt}. Just answer me with the translation. No '' needed. It must be the most human possible translation, like it was made by a native. Respect the given signals, like ! or ?",
+                "content": f"Translate the following sentence to {language}: {prompt}. Just answer with the translation. It must be the most natural and human translation possible, as if made by a native speaker. Respect the punctuation marks like ! or ?. Just answer the translation, direct to the point."
             }
         ],
-        model="llama3-8b-8192",
+        model="gemma2-9b-it",
     )
     an = chat_completion.choices[0].message.content
     return an
@@ -45,6 +45,33 @@ def home():
     
   
     return render_template('index.html', texto=final, language=language)
+
+
+@app.route('/models_test')
+def models_test():
+    return render_template('models_test.html')
+
+@app.route('/', methods=['GET', 'POST'])
+def models():
+    final = "" 
+    language = "English"  
+    
+    if request.method == 'POST':
+        texto = request.form.get('texto_input')
+        language = request.form.get('lang') 
+        
+        print(f"Texto recebido: {texto}")
+        print(f"Idioma selecionado: {language}")
+        
+        if texto: 
+            final = use_ai(language=language, prompt=texto)
+        else:
+            final = "Por favor, insira um texto válido."
+    
+  
+    return render_template('index.html', texto=final, language=language)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
