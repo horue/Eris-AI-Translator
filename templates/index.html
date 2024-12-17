@@ -31,8 +31,11 @@
     </form>
 
     <div class="output-box">
-    {% if texto %}
+        {% if texto %}
         <p>{{ texto }}</p>
+        <form action="/generate_audio" method="POST">
+            <button type="submit">Play Audio</button>
+        </form>
     {% endif %}
     </div>
 
