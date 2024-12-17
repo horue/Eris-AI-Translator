@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executar Função Python</title>
-    <link rel="stylesheet" href="static\style.css">
+    <title>Eris AI Translator</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <h1>Eris</h1>
+    <h1>Eris - AI Translator</h1>
+
     <form method="POST">
-        <input type="text" id="texto_input" name="texto_input">
-        <button type="submit">Enviar</button>
-        <p>{{ texto }}</p>
+        <!-- Dropdown de seleção de idioma -->
+        <select name="lang">
+            <option value="Español" {% if language == 'Español' %}selected{% endif %}>Español</option>
+            <option value="Japanese" {% if language == 'Japanese' %}selected{% endif %}>Japanese</option>
+            <option value="German" {% if language == 'German' %}selected{% endif %}>German</option>
+            <option value="English" {% if language == 'English' %}selected{% endif %}>English</option>
+        </select>
+        <br><br>
+
+        <!-- Campo de texto para inserir o prompt -->
+        <input type="text" id="texto_input" name="texto_input" value="{{ request.form['texto_input'] if request.form.get('texto_input') else '' }}">
+        <br><br>
+
+        <!-- Botão para enviar o formulário -->
+        <button type="submit">Translate</button>
     </form>
+
+    <!-- Exibe o resultado da tradução ou resposta da IA -->
+    {% if texto %}
+        <p>{{ texto }}</p>
+    {% endif %}
 </body>
 </html>
