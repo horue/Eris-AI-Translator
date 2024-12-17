@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    font-size: 60px;
+}
+
+input{
+    border-radius: 12px;
+    min-height: 25px;
+    min-width: 50%;
+}
+
+button{
+    border-radius: 12px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
